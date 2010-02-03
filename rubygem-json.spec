@@ -29,9 +29,9 @@ a network rather than use a verbose markup language.
 rm -rf %{buildroot}
 gem install --install-dir %{buildroot}/%{ruby_gemdir} --force %{SOURCE0}
 
-chmod g-w,g+r,o+r -R %{buildroot}
-
+rm -rf %{buildroot}%{ruby_gemdir}/{cache,gems/%{oname}-%{version}/ext}
 mv %{buildroot}%{ruby_gemdir}/bin %{buildroot}%{_prefix}
+chmod g-w,g+r,o+r -R %{buildroot}
 
 %clean
 rm -rf %{buildroot}
@@ -40,7 +40,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc %{ruby_gemdir}/doc/%{oname}-%{version}
 %{_bindir}/*_json.rb
-%{ruby_gemdir}/cache/%{oname}-%{version}.gem
 %{ruby_gemdir}/gems/%{oname}-%{version}
 %{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
 

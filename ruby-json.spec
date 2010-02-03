@@ -1,9 +1,9 @@
 %define	oname	json
 
 Summary:	GeoIP ruby gem
-Name:		ruby-%{oname}
+Name:		rubygem-%{oname}
 Version:	1.2.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Ruby or GPLv2
 Group:		Development/Ruby
 URL:		http://%{oname}.rubyforge.org/
@@ -11,6 +11,8 @@ Source0:	http://gems.rubyforge.org/gems/%{oname}-%{version}.gem
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	ruby-RubyGems ruby-devel ruby-rake
 Requires:	ruby
+Obsoletes:	ruby-json <= %{version}-%{release}
+Provides:	ruby-json = %{version}-%{release}
 
 %description
 This is a implementation of the JSON specification according

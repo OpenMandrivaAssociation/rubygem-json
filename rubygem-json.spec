@@ -22,16 +22,14 @@ if you want to store data to disk or transmit it over
 a network rather than use a verbose markup language.
 
 %prep
+%gem_unpack -n %{oname}-%{version}
 
 %build
+%gem_build
 
 %install
 rm -rf %{buildroot}
-gem install --install-dir %{buildroot}/%{ruby_gemdir} --force %{SOURCE0}
-
-rm -rf %{buildroot}%{ruby_gemdir}/{cache,gems/%{oname}-%{version}/ext}
-mv %{buildroot}%{ruby_gemdir}/bin %{buildroot}%{_prefix}
-chmod g-w,g+r,o+r -R %{buildroot}
+%gem_install
 
 %clean
 rm -rf %{buildroot}
@@ -42,4 +40,5 @@ rm -rf %{buildroot}
 %{_bindir}/*_json.rb
 %{ruby_gemdir}/gems/%{oname}-%{version}
 %{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
-
+%{ruby_sitearchdir}/generator.so
+%{ruby_sitearchdir}/parser.so

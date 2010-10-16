@@ -11,7 +11,7 @@ Source0:	http://gems.rubyforge.org/gems/%{oname}-%{version}.gem
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	ruby-RubyGems ruby-devel ruby-rake
 Requires:	ruby
-%rename ruby-json
+%rename		ruby-json
 
 %description
 This is a implementation of the JSON specification according

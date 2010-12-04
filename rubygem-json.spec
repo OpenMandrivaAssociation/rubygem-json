@@ -1,43 +1,56 @@
-%define	oname	json
+%define oname json
 
-Summary:	GeoIP ruby gem
-Name:		rubygem-%{oname}
-Version:	1.2.0
-Release:	%mkrel 2
-License:	Ruby or GPLv2
-Group:		Development/Ruby
-URL:		http://%{oname}.rubyforge.org/
-Source0:	http://gems.rubyforge.org/gems/%{oname}-%{version}.gem
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	ruby-RubyGems ruby-devel ruby-rake
-Requires:	ruby
-%rename		ruby-json
+Name:       rubygem-%{oname}
+Version:    1.4.6
+Release:    %mkrel 1
+Summary:    JSON Implementation for Ruby
+Group:      Development/Ruby
+License:    GPLv2+ or Ruby License
+URL:        http://flori.github.com/json
+Source0:    http://rubygems.org/gems/%{oname}-%{version}.gem
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires:   rubygems
+BuildRequires: rubygems
+Provides:   rubygem(%{oname}) = %{version}
 
 %description
-This is a implementation of the JSON specification according
-to RFC 4627 in Ruby.
-You can think of it as a low fat alternative to XML,
-if you want to store data to disk or transmit it over
-a network rather than use a verbose markup language.
+This is a JSON implementation as a Ruby extension in C.
+
 
 %prep
-%gem_unpack -n %{oname}-%{version}
 
 %build
-%gem_build
+mkdir -p .%{ruby_gemdir}
+gem install -V --local --install-dir .%{ruby_gemdir} \
+               --force --rdoc %{SOURCE0}
 
 %install
-rm -rf %{buildroot}
-%gem_install
+rm -rf %buildroot
+mkdir -p %{buildroot}%{ruby_gemdir}
+cp -ax .%{ruby_gemdir}/* %{buildroot}%{ruby_gemdir}
+
+#Move arch-dependant files to sitearchdir
+mkdir -p %{buildroot}%{ruby_sitearchdir}/
+mv %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/ext/json/ext/json/ext/*.so \
+   %{buildroot}%{ruby_sitearchdir}
+rm -rf %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/ext/
+
+# Install executables
+mkdir -p %{buildroot}/%{_bindir}
+mv %{buildroot}%{ruby_gemdir}/bin/* %{buildroot}/%{_bindir}
+rmdir %{buildroot}%{ruby_gemdir}/bin
+find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/bin -type f | xargs chmod a+x
 
 %clean
 rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, -)
+%{_bindir}/edit_json.rb
+%{_bindir}/prettify_json.rb
+%{ruby_gemdir}/gems/%{oname}-%{version}/
 %doc %{ruby_gemdir}/doc/%{oname}-%{version}
-%{_bindir}/*_json.rb
-%{ruby_gemdir}/gems/%{oname}-%{version}
+%doc %{ruby_gemdir}/gems/%{oname}-%{version}/README
+%{ruby_gemdir}/cache/%{oname}-%{version}.gem
 %{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
-%{ruby_sitearchdir}/generator.so
-%{ruby_sitearchdir}/parser.so
+%{ruby_sitearchdir}/*.so

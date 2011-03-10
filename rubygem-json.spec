@@ -1,8 +1,8 @@
 %define oname json
 
 Name:       rubygem-%{oname}
-Version:    1.4.6
-Release:    %mkrel 2
+Version:    1.5.1
+Release:    %mkrel 1
 Summary:    JSON Implementation for Ruby
 Group:      Development/Ruby
 License:    GPLv2+ or Ruby License
@@ -19,6 +19,7 @@ This is a JSON implementation as a Ruby extension in C.
 
 
 %prep
+%setup -q
 
 %build
 mkdir -p .%{ruby_gemdir}

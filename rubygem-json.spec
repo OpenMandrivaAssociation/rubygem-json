@@ -13,6 +13,7 @@ Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
 BuildRequires:	rubygems 
 BuildRequires:	ruby-devel
 BuildRequires:	rubygem(rake)
+%rename		ruby-%{rbname}
 
 %description
 This is a JSON implementation as a Ruby extension in C.

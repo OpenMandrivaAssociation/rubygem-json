@@ -1,58 +1,73 @@
-%define oname json
+# Generated from json-1.5.1.gem by gem2rpm5 -*- rpm-spec -*-          
+%define	rbname	json
 
-Name:       rubygem-%{oname}
-Version:    1.5.1
-Release:    %mkrel 1
-Summary:    JSON Implementation for Ruby
-Group:      Development/Ruby
-License:    GPLv2+ or Ruby License
-URL:        http://flori.github.com/json
-Source0:    http://rubygems.org/gems/%{oname}-%{version}.gem
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires:   rubygems
-BuildRequires: rubygems
-BuildRequires: ruby-devel
-Provides:   rubygem(%{oname}) = %{version}
+Summary:	JSON Implementation for Ruby
+Name:		rubygem-%{rbname}
+
+Version:	1.5.1
+Release:	1
+Group:		Development/Ruby
+License:	GPLv2+ or Ruby
+URL:		http://flori.github.com/json
+Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
+BuildRequires:	rubygems 
+BuildRequires:	ruby-devel
+BuildRequires:	rubygem(rake)
 
 %description
 This is a JSON implementation as a Ruby extension in C.
 
+%package	doc
+Summary:	Documentation for %{name}
+Group:		Books/Computer books
+Requires:	%{name} = %{EVRD}
+
+%description	doc
+Documents, RDoc & RI documentation for %{name}.
 
 %prep
 %setup -q
 
 %build
-mkdir -p .%{ruby_gemdir}
-gem install -V --local --install-dir .%{ruby_gemdir} \
-               --force --rdoc %{SOURCE0}
+%gem_build -f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
 
 %install
-rm -rf %buildroot
-mkdir -p %{buildroot}%{ruby_gemdir}
-cp -ax .%{ruby_gemdir}/* %{buildroot}%{ruby_gemdir}
-
-#Move arch-dependant files to sitearchdir
-mkdir -p %{buildroot}%{ruby_sitearchdir}/
-mv %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/ext/json/ext/json/ext/*.so \
-   %{buildroot}%{ruby_sitearchdir}
-rm -rf %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/ext/
-
-# Install executables
-mkdir -p %{buildroot}/%{_bindir}
-mv %{buildroot}%{ruby_gemdir}/bin/* %{buildroot}/%{_bindir}
-rmdir %{buildroot}%{ruby_gemdir}/bin
-find %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/bin -type f | xargs chmod a+x
+rm -rf %{buildroot}
+%gem_install
+rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
 
 %clean
 rm -rf %{buildroot}
 
 %files
-%defattr(-, root, root, -)
 %{_bindir}/edit_json.rb
 %{_bindir}/prettify_json.rb
-%{ruby_gemdir}/gems/%{oname}-%{version}/
-%doc %{ruby_gemdir}/doc/%{oname}-%{version}
-%doc %{ruby_gemdir}/gems/%{oname}-%{version}/README
-%{ruby_gemdir}/cache/%{oname}-%{version}.gem
-%{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
-%{ruby_sitearchdir}/*.so
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}
+%{ruby_gemdir}/gems/%{rbname}-%{version}/*.rb
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/bin
+%{ruby_gemdir}/gems/%{rbname}-%{version}/bin/*.rb
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/data
+%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.html
+%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.js
+%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.json
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/java/lib
+%{ruby_gemdir}/gems/%{rbname}-%{version}/java/lib/*.jar
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json.rb
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json/*
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tools
+%{ruby_gemdir}/gems/%{rbname}-%{version}/tools/*.rb
+%{ruby_gemdir}/specifications/%{rbname}-%{version}.gemspec
+%dir %{ruby_sitearchdir}/json
+%dir %{ruby_sitearchdir}/json/ext
+%{ruby_sitearchdir}/json/ext/generator.so
+%{ruby_sitearchdir}/json/ext/parser.so
+
+%files doc
+%doc %{ruby_gemdir}/doc/%{rbname}-%{version}
+%doc %{ruby_gemdir}/gems/%{rbname}-%{version}/README
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/benchmarks
+%{ruby_gemdir}/gems/%{rbname}-%{version}/benchmarks/*
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tests
+%{ruby_gemdir}/gems/%{rbname}-%{version}/tests/*

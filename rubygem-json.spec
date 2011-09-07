@@ -1,4 +1,3 @@
-# Generated from json-1.5.1.gem by gem2rpm5 -*- rpm-spec -*-          
 %define	rbname	json
 
 Summary:	JSON Implementation for Ruby

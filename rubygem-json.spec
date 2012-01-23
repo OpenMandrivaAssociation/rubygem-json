@@ -3,7 +3,7 @@
 Summary:	JSON Implementation for Ruby
 Name:		rubygem-%{rbname}
 
-Version:	1.5.1
+Version:	1.6.5
 Release:	1
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
@@ -32,26 +32,16 @@ Documents, RDoc & RI documentation for %{name}.
 %gem_build -f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
 
 %install
-rm -rf %{buildroot}
 %gem_install
 rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%{_bindir}/edit_json.rb
-%{_bindir}/prettify_json.rb
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}
 %{ruby_gemdir}/gems/%{rbname}-%{version}/*.rb
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/bin
-%{ruby_gemdir}/gems/%{rbname}-%{version}/bin/*.rb
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/data
 %{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.html
 %{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.js
 %{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.json
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/java/lib
-%{ruby_gemdir}/gems/%{rbname}-%{version}/java/lib/*.jar
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
 %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json.rb
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json
@@ -66,7 +56,7 @@ rm -rf %{buildroot}
 
 %files doc
 %doc %{ruby_gemdir}/doc/%{rbname}-%{version}
-%doc %{ruby_gemdir}/gems/%{rbname}-%{version}/README
+%doc %{ruby_gemdir}/gems/%{rbname}-%{version}/README.*
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/benchmarks
 %{ruby_gemdir}/gems/%{rbname}-%{version}/benchmarks/*
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tests

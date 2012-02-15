@@ -4,7 +4,7 @@ Summary:	JSON Implementation for Ruby
 Name:		rubygem-%{rbname}
 
 Version:	1.6.5
-Release:	2
+Release:	3
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
 URL:		http://flori.github.com/json

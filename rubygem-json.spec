@@ -3,8 +3,8 @@
 Summary:	JSON Implementation for Ruby
 Name:		rubygem-%{rbname}
 
-Version:	1.6.5
-Release:	3
+Version:	1.6.6
+Release:	1
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
 URL:		http://flori.github.com/json
@@ -56,7 +56,5 @@ rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
 %files doc
 %doc %{ruby_gemdir}/doc/%{rbname}-%{version}
 %doc %{ruby_gemdir}/gems/%{rbname}-%{version}/README.*
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/benchmarks
-%{ruby_gemdir}/gems/%{rbname}-%{version}/benchmarks/*
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tests
 %{ruby_gemdir}/gems/%{rbname}-%{version}/tests/*

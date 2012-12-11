@@ -58,3 +58,47 @@ rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
 %doc %{ruby_gemdir}/gems/%{rbname}-%{version}/README.*
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tests
 %{ruby_gemdir}/gems/%{rbname}-%{version}/tests/*
+
+
+%changelog
+* Mon Apr 09 2012 Alexander Khrukin <akhrukin@mandriva.org> 1.6.6-1
++ Revision: 789986
+- version update 1.6.6
+
+* Wed Feb 15 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.6.5-3
++ Revision: 774413
+- drop rake dependency, it's now provided by ruby
+- mass rebuild of ruby packages against ruby 1.9.1
+
+* Mon Jan 23 2012 Alexander Khrukin <akhrukin@mandriva.org> 1.6.5-1
++ Revision: 766962
+- version update 1.6.5
+
+  + Andrey Smirnov <asmirnov@mandriva.org>
+    - rpmlint warning
+
+* Thu Mar 10 2011 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.5.1-1
++ Revision: 643352
+- regenerate spec with gem2rpm5
+- new release: 1.5.1
+
+* Sat Dec 04 2010 Rémy Clouard <shikamaru@mandriva.org> 1.4.6-2mdv2011.0
++ Revision: 609255
+- %gem_build macros are broken at the moment, using classic method from
+  gem2rpm to build the package for the moment.
+
+  + Per Øyvind Karlsen <peroyvind@mandriva.org>
+    - use %%rename macro
+    - use new %%gem_* macros
+
+* Wed Feb 03 2010 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.2.0-2mdv2010.1
++ Revision: 500558
+- don't install the gem itself or any of the build files...
+- rename to follow naming scheme for ruby gem packages
+- rename to follow ruby gem naming scheme...
+
+* Mon Feb 01 2010 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.2.0-1mdv2010.1
++ Revision: 499318
+- add missing buildrequires
+- import ruby-json
+

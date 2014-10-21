@@ -37,21 +37,21 @@ rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
 %files
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}
 %{ruby_gemdir}/gems/%{rbname}-%{version}/*.rb
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/data
-%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.html
-%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.js
-%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.json
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
-%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json.rb
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json
-%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json/*
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tools
-%{ruby_gemdir}/gems/%{rbname}-%{version}/tools/*.rb
+# %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/data
+# %{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.html
+# %{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.js
+# %{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.json
+# %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
+# %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json.rb
+# %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json
+# %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json/*
+# %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tools
+# %{ruby_gemdir}/gems/%{rbname}-%{version}/tools/*.rb
 %{ruby_gemdir}/specifications/%{rbname}-%{version}.gemspec
-%dir %{ruby_sitearchdir}/json
+# %dir %{ruby_sitearchdir}/json
 %dir %{ruby_sitearchdir}/json/ext
 %{ruby_sitearchdir}/json/ext/generator.so
-%{ruby_sitearchdir}/json/ext/parser.so
+# %{ruby_sitearchdir}/json/ext/parser.so
 %{_datadir}/gems/doc/json-1.8.1/rdoc/BigDecimal.html
 %{_datadir}/gems/doc/json-1.8.1/rdoc/Class.html
 %{_datadir}/gems/doc/json-1.8.1/rdoc/Complex.html
@@ -302,7 +302,7 @@ rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
 %{_datadir}/gems/gems/json-1.8.1/ext/json/ext/generator/extconf.rb
 %{_datadir}/gems/gems/json-1.8.1/ext/json/ext/parser/extconf.rb
 %{_datadir}/gems/gems/json-1.8.1/install.rb
-%{_datadir}/gems/gems/json-1.8.1/lib/json.rb
+# %{_datadir}/gems/gems/json-1.8.1/lib/json.rb
 %{_datadir}/gems/gems/json-1.8.1/lib/json/add/bigdecimal.rb
 %{_datadir}/gems/gems/json-1.8.1/lib/json/add/complex.rb
 %{_datadir}/gems/gems/json-1.8.1/lib/json/add/core.rb
@@ -366,10 +366,10 @@ rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
 %{_datadir}/gems/gems/json-1.8.1/tests/test_json_unicode.rb
 %{_datadir}/gems/gems/json-1.8.1/tools/fuzz.rb
 %{_datadir}/gems/gems/json-1.8.1/tools/server.rb
-%{_datadir}/gems/specifications/json-1.8.1.gemspec
+# %{_datadir}/gems/specifications/json-1.8.1.gemspec
 
 %files doc
 %doc %{ruby_gemdir}/doc/%{rbname}-%{version}
 %doc %{ruby_gemdir}/gems/%{rbname}-%{version}/README.*
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tests
-%{ruby_gemdir}/gems/%{rbname}-%{version}/tests/*
+# %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tests
+# %{ruby_gemdir}/gems/%{rbname}-%{version}/tests/*

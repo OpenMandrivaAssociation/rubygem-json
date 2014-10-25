@@ -32,31 +32,31 @@ Documents, RDoc & RI documentation for %{name}.
 
 %install
 %gem_install
-rm -rf %{buildroot}%{ruby_gemdir}/gems/%{rbname}-%{version}/ext
+rm -rf %{buildroot}%{gem_dir}/gems/%{rbname}-%{version}/ext
 
 %files
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}
-%{ruby_gemdir}/gems/%{rbname}-%{version}/*.rb
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/data
-%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.html
-%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.js
-%{ruby_gemdir}/gems/%{rbname}-%{version}/data/*.json
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
-%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json.rb
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json
-%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/json/*
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tools
-%{ruby_gemdir}/gems/%{rbname}-%{version}/tools/*.rb
-%{ruby_gemdir}/specifications/%{rbname}-%{version}.gemspec
+%dir %{gem_dir}/gems/%{rbname}-%{version}
+%{gem_dir}/gems/%{rbname}-%{version}/*.rb
+%dir %{gem_dir}/gems/%{rbname}-%{version}/data
+%{gem_dir}/gems/%{rbname}-%{version}/data/*.html
+%{gem_dir}/gems/%{rbname}-%{version}/data/*.js
+%{gem_dir}/gems/%{rbname}-%{version}/data/*.json
+%dir %{gem_dir}/gems/%{rbname}-%{version}/lib
+%{gem_dir}/gems/%{rbname}-%{version}/lib/json.rb
+%dir %{gem_dir}/gems/%{rbname}-%{version}/lib/json
+%{gem_dir}/gems/%{rbname}-%{version}/lib/json/*
+%dir %{gem_dir}/gems/%{rbname}-%{version}/tools
+%{gem_dir}/gems/%{rbname}-%{version}/tools/*.rb
+%{gem_dir}/specifications/%{rbname}-%{version}.gemspec
 %dir %{ruby_sitearchdir}/json
 %dir %{ruby_sitearchdir}/json/ext
 %{ruby_sitearchdir}/json/ext/generator.so
 #{ruby_sitearchdir}/json/ext/parser.so
 
 %files doc
-%doc %{ruby_gemdir}/doc/%{rbname}-%{version}
-%doc %{ruby_gemdir}/gems/%{rbname}-%{version}/README.*
-%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/tests
-%{ruby_gemdir}/gems/%{rbname}-%{version}/tests/*
+%doc %{gem_dir}/doc/%{rbname}-%{version}
+%doc %{gem_dir}/gems/%{rbname}-%{version}/README.*
+%dir %{gem_dir}/gems/%{rbname}-%{version}/tests
+%{gem_dir}/gems/%{rbname}-%{version}/tests/*
 
 

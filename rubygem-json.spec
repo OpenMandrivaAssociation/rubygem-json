@@ -1,5 +1,4 @@
 %define	gem_name	json
-%define _enable_debug_packages 1
 
 Summary:	JSON Implementation for Ruby
 Name:		rubygem-%{gem_name}
@@ -31,15 +30,8 @@ Documents, RDoc & RI documentation for %{name}.
 %build
 %gem_build 
 
-
-#rm -rf %{buildroot}%{gem_dir}/%{gem_name}-%{version}/ext
-#-f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
-
 %install
 cp -r %{_builddir}/%{gem_name}-%{version}/usr %{buildroot} 
-
-
-#rm -rf %{buildroot}%{gem_dir}/%{gem_name}-%{version}/ext
 
 %files
 %{_libdir}/ruby/gems/*/specifications/%{gem_name}-%{version}.gemspec
@@ -47,9 +39,7 @@ cp -r %{_builddir}/%{gem_name}-%{version}/usr %{buildroot}
 %{_libdir}/ruby/gems/*/gems/%{gem_name}-%{version}
 %{_libdir}/ruby/gems/*/extensions/*/*/%{gem_name}-%{version}
 
-
 %files doc
 %doc %{ruby_gemdir}/doc/%{gem_name}-%{version}/
 %doc %{ruby_gemdir}/gems/%{gem_name}-%{version}/README.*
 
-#usr/lib64/ruby/gems/2.7.0/gems/json-2.6.1

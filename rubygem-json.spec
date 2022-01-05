@@ -1,4 +1,5 @@
 %define	gem_name	json
+%define _enable_debug_packages 1
 
 Summary:	JSON Implementation for Ruby
 Name:		rubygem-%{gem_name}
@@ -25,40 +26,30 @@ Requires:	%{name} = %{EVRD}
 Documents, RDoc & RI documentation for %{name}.
 
 %prep
-%setup -q -n %{gem_name}-%{version}
+%autosetup -n %{gem_name}-%{version}
 
 %build
-#cd %{rbname}-%{version}
-%gem_build -f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
+%gem_build 
+
+
+#rm -rf %{buildroot}%{gem_dir}/%{gem_name}-%{version}/ext
+#-f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
 
 %install
-#%%gem_install
-/usr/bin/gem install json-2.6.1.gem -V --local --env-shebang --document rdoc,ri --force --ignore-dependencies --install-dir /usr/share/ruby/gems --bindir /usr/bin --build-root . -f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
-rm -rf %{buildroot}%{gem_dir}/gems/%{gem_name}-%{version}/ext
+cp -r %{_builddir}/%{gem_name}-%{version}/usr %{buildroot} 
+
+
+#rm -rf %{buildroot}%{gem_dir}/%{gem_name}-%{version}/ext
 
 %files
-%dir %{gem_dir}/gems/%{gem_name}-%{version}
-%{gem_dir}/gems/%{gem_name}-%{version}/*.rb
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/data
-%{gem_dir}/gems/%{gem_name}-%{version}/data/*.html
-%{gem_dir}/gems/%{gem_name}-%{version}/data/*.js
-%{gem_dir}/gems/%{gem_name}-%{version}/data/*.json
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/lib
-%{gem_dir}/gems/%{gem_name}-%{version}/lib/json.rb
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/lib/json
-%{gem_dir}/gems/%{gem_name}-%{version}/lib/json/*
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/tools
-%{gem_dir}/gems/%{gem_name}-%{version}/tools/*.rb
-%{gem_dir}/specifications/%{gem_name}-%{version}.gemspec
-%dir %{ruby_sitearchdir}/json
-%dir %{ruby_sitearchdir}/json/ext
-%{ruby_sitearchdir}/json/ext/generator.so
-#{ruby_sitearchdir}/json/ext/parser.so
+%{_libdir}/ruby/gems/*/specifications/%{gem_name}-%{version}.gemspec
+%{_libdir}/ruby/gems/*/cache/%{gem_name}-%{version}.gem
+%{_libdir}/ruby/gems/*/gems/%{gem_name}-%{version}
+%{_libdir}/ruby/gems/*/extensions/*/*/%{gem_name}-%{version}
+
 
 %files doc
-%doc %{gem_dir}/doc/%{gem_name}-%{version}
-%doc %{gem_dir}/gems/%{gem_name}-%{version}/README.*
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/tests
-%{gem_dir}/gems/%{gem_name}-%{version}/tests/*
+%doc %{ruby_gemdir}/doc/%{gem_name}-%{version}/
+%doc %{ruby_gemdir}/gems/%{gem_name}-%{version}/README.*
 
-
+#usr/lib64/ruby/gems/2.7.0/gems/json-2.6.1

@@ -1,4 +1,5 @@
 %define	gem_name	json
+%global _empty_manifest_terminate_build 0
 
 Summary:	JSON Implementation for Ruby
 Name:		rubygem-%{gem_name}
@@ -25,40 +26,19 @@ Requires:	%{name} = %{EVRD}
 Documents, RDoc & RI documentation for %{name}.
 
 %prep
-%setup -q -n %{gem_name}-%{version}
+%autosetup -p1 -n %{gem_name}-%{version}
 
 %build
-#cd %{rbname}-%{version}
-%gem_build -f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
+%gem_build
 
 %install
-#%%gem_install
-/usr/bin/gem install json-2.6.1.gem -V --local --env-shebang --document rdoc,ri --force --ignore-dependencies --install-dir /usr/share/ruby/gems --bindir /usr/bin --build-root . -f '(.*.rb|benchmarks|bin|data|java/lib|tools|tests)'
-rm -rf %{buildroot}%{gem_dir}/gems/%{gem_name}-%{version}/ext
+%gem_install -d %{buildroot}
 
 %files
-%dir %{gem_dir}/gems/%{gem_name}-%{version}
-%{gem_dir}/gems/%{gem_name}-%{version}/*.rb
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/data
-%{gem_dir}/gems/%{gem_name}-%{version}/data/*.html
-%{gem_dir}/gems/%{gem_name}-%{version}/data/*.js
-%{gem_dir}/gems/%{gem_name}-%{version}/data/*.json
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/lib
-%{gem_dir}/gems/%{gem_name}-%{version}/lib/json.rb
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/lib/json
-%{gem_dir}/gems/%{gem_name}-%{version}/lib/json/*
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/tools
-%{gem_dir}/gems/%{gem_name}-%{version}/tools/*.rb
-%{gem_dir}/specifications/%{gem_name}-%{version}.gemspec
-%dir %{ruby_sitearchdir}/json
-%dir %{ruby_sitearchdir}/json/ext
-%{ruby_sitearchdir}/json/ext/generator.so
-#{ruby_sitearchdir}/json/ext/parser.so
+%{ruby_gemdir}/gems/json-%{version}
+%{ruby_gemdir}/extensions/*/*/json-%{version}
+%{ruby_gemdir}/cache/json-%{version}.gem
+%{ruby_gemdir}/specifications/json-%{version}.gemspec
 
 %files doc
-%doc %{gem_dir}/doc/%{gem_name}-%{version}
-%doc %{gem_dir}/gems/%{gem_name}-%{version}/README.*
-%dir %{gem_dir}/gems/%{gem_name}-%{version}/tests
-%{gem_dir}/gems/%{gem_name}-%{version}/tests/*
-
-
+%doc %{ruby_gemdir}/doc/json-%{version}

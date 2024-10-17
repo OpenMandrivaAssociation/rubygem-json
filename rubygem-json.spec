@@ -4,7 +4,7 @@ Version:	2.6.1
 Release:	1
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
-URL:		http://flori.github.com/json
+URL:		https://flori.github.com/json
 Source0:	http://rubygems.org/gems/json-%{version}.gem
 BuildRequires:	ruby
 BuildRequires:	ruby-devel
